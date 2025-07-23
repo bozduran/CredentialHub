@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Spring Application</title>
+  <link rel="stylesheet" href="/css/index.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Header -->
+<!-- Header -->
+<header>
+  <h1>CredentialHub</h1>
+</header>
+
+<!-- Navigation Bar -->
+<nav>
+  <ul>
+    <li><a th:href="@{/}" class="active"><i class="fas fa-home"></i> Home</a></li>
+    <li><a th:href="@{/about}"><i class="fas fa-info-circle"></i> About</a></li>
+    <li><a th:href="@{/services}"><i class="fas fa-concierge-bell"></i> Services</a></li>
+    <li><a th:href="@{/contact}"><i class="fas fa-envelope"></i> Contact</a></li>
+    <li><a th:href="@{/login}"><i class="fas fa-userData"></i> Login</a></li>
+  </ul>
+</nav>
+
+<!-- Main Content -->
+<main>
+  <section id="welcome">
+    <h2>Welcome to Our Site</h2>
+    <p>Current date: <span th:text="${#temporals.format(#temporals.createNow(), 'MMMM dd, yyyy')}"></span></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
+  </section>
+
+  <section id="features">
+    <h2>Our Features</h2>
+    <div class="feature-list">
+      <div class="feature">
+        <i class="fas fa-bolt"></i>
+        <h3>Fast Performance</h3>
+        <p>Our application is optimized for speed and efficiency.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Secure</h3>
+        <p>Enterprise-grade security for all your data.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Responsive</h3>
+        <p>Works perfectly on all devices and screen sizes.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2023</span> My Spring Application</p>
+  <div class="social-links">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-github"></i></a>
+  </div>
+</footer>
+</body>
+</html>
