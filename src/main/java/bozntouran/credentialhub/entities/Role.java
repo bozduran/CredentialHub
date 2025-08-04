@@ -3,7 +3,6 @@ package bozntouran.credentialhub.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.ToString;
 
 import java.util.Collection;
 

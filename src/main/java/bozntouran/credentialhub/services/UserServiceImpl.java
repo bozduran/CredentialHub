@@ -1,24 +1,18 @@
 package bozntouran.credentialhub.services;
 
 import bozntouran.credentialhub.dto.UserPrincipal;
-import bozntouran.credentialhub.entities.Role;
 import bozntouran.credentialhub.entities.UserData;
 import bozntouran.credentialhub.reposistories.PrivilegeRepository;
 import bozntouran.credentialhub.reposistories.RoleRepository;
 import bozntouran.credentialhub.reposistories.UserDataRepository;
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
