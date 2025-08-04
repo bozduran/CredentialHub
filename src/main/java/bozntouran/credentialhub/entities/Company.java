@@ -1,5 +1,6 @@
 package bozntouran.credentialhub.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -35,8 +36,7 @@ public class Company {
 
     @OneToMany(mappedBy = "company",
             cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY)
+            orphanRemoval = true)
     private List<Certificate> certificates;
 
 

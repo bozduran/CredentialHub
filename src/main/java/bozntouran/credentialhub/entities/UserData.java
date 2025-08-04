@@ -1,5 +1,6 @@
 package bozntouran.credentialhub.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -40,7 +41,10 @@ public class UserData {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
+    @JsonBackReference
     private Collection<Role> roles;
+
+
 
 
 }

@@ -1,7 +1,9 @@
 package bozntouran.credentialhub.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Collection;
 
@@ -24,5 +26,6 @@ public class Role {
                     name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "privilege_id", referencedColumnName = "id"))
+    @JsonBackReference
     private Collection<Privilege> privileges;
 }

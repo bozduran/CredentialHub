@@ -1,5 +1,6 @@
 package bozntouran.credentialhub.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -14,5 +15,6 @@ public class Privilege {
     private String name;
 
     @ManyToMany(mappedBy = "privileges")
+    @JsonBackReference
     private Collection<Role> roles;
 }

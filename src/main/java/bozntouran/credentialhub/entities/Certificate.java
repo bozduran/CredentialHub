@@ -38,7 +38,7 @@ public class Certificate {
     private Company company;
 
     public void setCompany(Company company) {
-        company.getCertificates().add(this);
+        //company.getCertificates().add(this);
         this.company = company;
 
     }

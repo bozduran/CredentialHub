@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface CompanyService {
     List<Company> getCompanies();
 
-    Company getCompanyById(long id);
+    Optional<Company> getCompanyById(long id);
 
     Company saveNewCompany(Company company);
 
+
+    boolean deleteCompanyById(Long id);
 }

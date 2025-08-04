@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -23,12 +24,21 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company getCompanyById(long id) {
-        return companyRepository.findById(id).orElse(null);
+    public Optional<Company> getCompanyById(long id) {
+        return companyRepository.findById(id);
     }
 
     @Override
     public Company saveNewCompany(Company company) {
         return companyRepository.save(company);
+    }
+
+    @Override
+    public boolean deleteCompanyById(Long id) {
+        if (companyRepository.existsById(id)){
+            companyRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
