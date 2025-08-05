@@ -43,9 +43,16 @@ CredentialHub uses **Spring Security** with a **custom authentication provider**
 
 Admin users have elevated privileges to manage users, roles, and review submitted data. 
 
+Used Springdoc OpenAPI to automatically generate:
+
+    📄 API documentation
+
+    🌐 Interactive Swagger UI
+
+    🔁 Live testing interface for endpoints (right from your browser)
 
 | Layer      | Technology                                                          |
-| ---------- |---------------------------------------------------------------------|
+|------------|---------------------------------------------------------------------|
 | Backend    | Spring Boot 3.5.3                                                   |
 | Security   | Spring Security (custom provider in house stored and managed users) |
 | Database   | PostgreSQL                                                          |
@@ -56,7 +63,7 @@ Admin users have elevated privileges to manage users, roles, and review submitte
 | Testing    | Spring Boot Test                                                    |
 | Build Tool | Maven                                                               |
 | Java       | Java 21                                                             |
-
+| Swagger    | https://localhost:8080/swagger-ui/index.html                                                                    |
 
 
 
