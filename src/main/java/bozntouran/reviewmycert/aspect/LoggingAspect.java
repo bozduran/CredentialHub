@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Slf4j  // Lombok annotation for Log4j2-compatible logging
+@Slf4j
 public class LoggingAspect {
 
     @Around("execution(* bozntouran.reviewmycert.services..*(..))")
