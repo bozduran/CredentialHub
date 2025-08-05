@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -46,6 +47,9 @@ public class UserData {
     private Collection<Role> roles;
 
 
-
+    @OneToMany(mappedBy = "userData",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Review> reviews;
 
 }

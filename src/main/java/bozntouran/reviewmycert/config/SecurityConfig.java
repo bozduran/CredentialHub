@@ -43,6 +43,8 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/users/newUser").permitAll()
+                        .requestMatchers("/api/reviews/{id}").permitAll()
+                        .requestMatchers("/api/reviews-post/**").hasAuthority("ROLE_USER")
                         .requestMatchers("/api/company").permitAll()
                         .requestMatchers("/api/company/**").permitAll()
                         .requestMatchers("/api/company-new").hasAuthority("ROLE_ADMIN")

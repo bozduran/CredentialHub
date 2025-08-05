@@ -96,3 +96,15 @@ INSERT INTO users_roles(ROLE_ID, USER_ID)
 VALUES
                     (0,1),
                     (1,2)
+
+-- Extra reviews for certificate_id = 1
+INSERT INTO review (stars, comment, created_date, update_date, certificate_id, userdata)
+VALUES
+    (5, 'Extremely valuable content and very well structured.', now(), now(), 1, 3),
+    (4, 'Great overall but could use more updated cloud sections.', now(), now(), 1, 4),
+    (3, 'Good for beginners, not much depth for experienced devs.', now(), now(), 1, 5),
+    (2, 'I expected more hands-on labs or case studies.', now(), now(), 1, 6),
+    (4, 'Nice mix of theory and practice. Worth the time.', now(), now(), 1, 1),
+    (5, 'Helped me pass the exam on my first try. Highly recommended!', now(), now(), 1, 2),
+    (1, 'Outdated and too expensive for what it offers.', now(), now(), 1, 6),
+    (5, 'One of the best certs I’ve taken. Clear, concise, and relevant.', now(), now(), 1, 3);

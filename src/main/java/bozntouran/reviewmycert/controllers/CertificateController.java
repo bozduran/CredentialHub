@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -38,9 +40,12 @@ public class CertificateController {
 
     //only admins
     @PostMapping(CERTIFICATE_URL + "-new")
-    public ResponseEntity createNewCertificate(@Validated @RequestBody Certificate certificate){
+    public ResponseEntity createNewCertificate(  Authentication authentication,
+                                               @Validated @RequestBody Certificate certificate){
 
-        System.out.println(certificate.toString());
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        System.out.println(userDetails.getUsername()+"/"+userDetails.getAuthorities());
         Certificate newCertificate = certificateService.saveNewCertificate(certificate);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Location", CERTIFICATE_URL + "/"
