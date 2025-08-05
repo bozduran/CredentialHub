@@ -1,13 +1,13 @@
 
 
-🛡️ CredentialHub
+🛡️ ReviewMyCert
 
-CredentialHub is a secure and scalable web application designed to manage certifications, users, roles, and privileges. Built with Spring Boot, it uses PostgreSQL for data persistence and leverages a custom authentication provider via Spring Security to implement fine-grained access control.
+ReviewMyCert is a secure and scalable web application designed to manage certifications, users, roles, and privileges. Built with Spring Boot, it uses PostgreSQL for data persistence and leverages a custom authentication provider via Spring Security to implement fine-grained access control.
 
 🆕 Feature Update: Certification Reviews
 🔍 Overview
 
-In upcoming releases, CredentialHub will support user-generated comments and reviews for each certification. This allows:
+In upcoming releases, ReviewMyCert will support user-generated comments and reviews for each certification. This allows:
 
     📌 Users to leave feedback on certifications
 
@@ -35,7 +35,7 @@ In upcoming releases, CredentialHub will support user-generated comments and rev
 
 ### 🔐 Security
 
-CredentialHub uses **Spring Security** with a **custom authentication provider**, enabling:
+ReviewMyCert uses **Spring Security** with a **custom authentication provider**, enabling:
 
 - Authentication against **in-house user accounts** stored in a local PostgreSQL database
 - Role- and privilege-based access using custom logic (not relying on default Spring `UserDetailsService`)
@@ -82,6 +82,3 @@ Used Springdoc OpenAPI to automatically generate:
 
     PostgreSQL (running and accessible)
 
-📝 License
-
-This project is licensed under the MIT License.
