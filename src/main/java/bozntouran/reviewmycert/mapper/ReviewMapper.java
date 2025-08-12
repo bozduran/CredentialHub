@@ -9,12 +9,12 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface ReviewMapper {
 
-    ReviewMapper instance = Mappers.getMapper(ReviewMapper.class);
+    ReviewMapper MAPPER = Mappers.getMapper(ReviewMapper.class);
 
     @Mapping(source = "stars", target = "stars")
     @Mapping(source = "comment", target = "comment")
     @Mapping(source = "updateDate", target = "updateDate")
     @Mapping(source = "userData.username", target = "username")
-    ReviewDto reviewToReviewDto(Review review);
+    ReviewDto fromReview(Review review);
 
 }

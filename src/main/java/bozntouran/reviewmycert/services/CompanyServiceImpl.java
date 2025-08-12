@@ -1,17 +1,24 @@
 package bozntouran.reviewmycert.services;
 
+import bozntouran.reviewmycert.dto.CompanyDto;
 import bozntouran.reviewmycert.entities.Company;
+import bozntouran.reviewmycert.mapper.CompanyMapper;
 import bozntouran.reviewmycert.reposistories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
+
+    private static final int DEFAULT_PAGE = 0;
+    private static final int DEFAULT_PAGE_SIZE = 9;
 
     private final CompanyRepository companyRepository;
 
@@ -21,8 +28,15 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<Company> getCompanies() {
-        return companyRepository.findAll();
+    public Page<CompanyDto> getCompanies(String name, Integer pageNumber) {
+
+        PageRequest pageRequest = pageRequestBuilder(pageNumber, DEFAULT_PAGE_SIZE);
+
+        if (name != null){
+            return companyRepository.getAllByNameContainingIgnoreCase(name, pageRequest).map(CompanyMapper.MAPPER::fromCompany);
+        }
+
+        return companyRepository.findAll(pageRequest).map(CompanyMapper.MAPPER::fromCompany);
     }
 
     @Override
@@ -65,5 +79,30 @@ public class CompanyServiceImpl implements CompanyService {
                 () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found"); }
 
         );
+    }
+
+    public PageRequest pageRequestBuilder(Integer pageNumber, Integer pageSize){
+        int queryPageSize ;
+        int queryPageNumber;
+
+        if (pageNumber != null && pageNumber > 0){
+            queryPageNumber = pageNumber - 1;
+        }else{
+            queryPageNumber = DEFAULT_PAGE;
+        }
+
+        if (pageSize != null && pageSize > 0){
+            if (pageSize > 250){
+                queryPageSize = 250;
+            }else{
+                queryPageSize = pageSize;
+            }
+        }else{
+            queryPageSize = DEFAULT_PAGE_SIZE;
+        }
+
+        Sort sort = Sort.by("name");
+
+        return PageRequest.of(queryPageNumber, queryPageSize, sort);
     }
 }

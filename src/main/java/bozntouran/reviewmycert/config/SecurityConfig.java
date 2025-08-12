@@ -44,6 +44,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/users/newUser").permitAll()
                         .requestMatchers("/api/reviews/{id}").permitAll()
+                        .requestMatchers("api/reviews**").permitAll()
                         .requestMatchers("/api/reviews-post/**").hasAuthority("ROLE_USER")
                         .requestMatchers("/api/company").permitAll()
                         .requestMatchers("/api/company/**").permitAll()
@@ -57,8 +58,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/certificate-patch").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/api/users/all").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/api/company").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
+                .cors(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();

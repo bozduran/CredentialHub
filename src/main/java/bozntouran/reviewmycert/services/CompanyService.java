@@ -1,15 +1,15 @@
 package bozntouran.reviewmycert.services;
 
+import bozntouran.reviewmycert.dto.CompanyDto;
 import bozntouran.reviewmycert.entities.Company;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public interface CompanyService {
-    List<Company> getCompanies();
-
+    Page<CompanyDto> getCompanies(String name, Integer pageNumber);
     Optional<Company> getCompanyById(long id);
 
     Company saveNewCompany(Company company);

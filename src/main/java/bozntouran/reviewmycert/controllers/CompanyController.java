@@ -1,18 +1,18 @@
 package bozntouran.reviewmycert.controllers;
 
+import bozntouran.reviewmycert.dto.CompanyDto;
 import bozntouran.reviewmycert.entities.Company;
 import bozntouran.reviewmycert.services.CompanyService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @RestController()
 @Log4j2
@@ -29,8 +29,10 @@ public class CompanyController {
     }
 
     @GetMapping(COMPANY_URL)
-    public List<Company> getAllCompanies() {
-        return companyService.getCompanies();
+    public Page<CompanyDto> getAllCompanies(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer pageNumber) {
+        return companyService.getCompanies(name, pageNumber);
     }
 
     @GetMapping(COMPANY_ID_URL)

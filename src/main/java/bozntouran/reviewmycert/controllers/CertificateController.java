@@ -1,9 +1,12 @@
 package bozntouran.reviewmycert.controllers;
 
 
+import bozntouran.reviewmycert.dto.CertificateDto;
+import bozntouran.reviewmycert.dto.CertificateField;
 import bozntouran.reviewmycert.entities.Certificate;
 import bozntouran.reviewmycert.services.CertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @RestController
 public class CertificateController {
@@ -29,8 +30,17 @@ public class CertificateController {
     }
 
     @GetMapping(CERTIFICATE_URL)
-    public List<Certificate> getAllCertificates(){
-        return this.certificateService.getCertificates();
+    public Page<CertificateDto> getCertificates(
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer pageNumber,
+            @RequestParam(required = false) Double startingRangePrice,
+            @RequestParam(required = false) Double endRangePrice,
+            @RequestParam(required = false) CertificateField certificateField,
+            @RequestParam(required = false) Long companyId
+            ){
+
+        return this.certificateService.findAll(id,name,startingRangePrice,endRangePrice, certificateField,pageNumber,companyId);
     }
 
     @GetMapping(CERTIFICATE_ID_URL)

@@ -31,22 +31,9 @@ public class Company {
     @Max(3000)
     private int yearOfFoundation;
 
-
     @OneToMany(mappedBy = "company",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Certificate> certificates;
 
-
 }
-/*
-{
-    "name":
-    "description":
-    "yearOfFoundation":
-
-}
-
-
-
- */

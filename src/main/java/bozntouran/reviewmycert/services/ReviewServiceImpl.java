@@ -9,12 +9,14 @@ import bozntouran.reviewmycert.reposistories.CertificateRepository;
 import bozntouran.reviewmycert.reposistories.ReviewRepository;
 import bozntouran.reviewmycert.reposistories.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
@@ -33,14 +35,6 @@ public class ReviewServiceImpl implements ReviewService{
         this.certificateRepository = certificateRepository;
     }
 
-    public List<ReviewDto> getCertificateDtoByCertificateId(Long certificateID){
-        List<Review> reviewsList = reviewRepository.getAllByCertificate_Id(certificateID);
-
-        return reviewsList.stream()
-                .map(ReviewMapper.instance::reviewToReviewDto)
-                .toList();
-
-    }
     public Review patchReviewByCertificateId(Certificate certificate, UserData userData, ReviewDto reviewDto){
 
         Review review = reviewRepository.findByUserData(userData);
@@ -72,6 +66,27 @@ public class ReviewServiceImpl implements ReviewService{
         review.setCreatedDate(LocalDateTime.now());
 
         return reviewRepository.save(review);
+    }
+
+    @Override
+    public Page<ReviewDto> getAllReviews(Long certificateId, String username, Pageable pageable) {
+
+        Page<Review> page;
+
+        if (certificateId!=null){
+            page = reviewRepository.getAllByCertificate_Id(certificateId, pageable);
+        }else if (username!=null){
+            page = reviewRepository.getAllByUserData_Username(username, pageable);
+        }else{
+            page = reviewRepository.findAll(pageable);
+        }
+
+        return page.map(ReviewMapper.MAPPER::fromReview);
+    }
+
+    @Override
+    public Optional<ReviewDto> getReviewById(Long id) {
+        return reviewRepository.findById(id).map(ReviewMapper.MAPPER::fromReview);
     }
 
 

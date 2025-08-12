@@ -1,6 +1,9 @@
 package bozntouran.reviewmycert.services;
 
+import bozntouran.reviewmycert.dto.CertificateDto;
+import bozntouran.reviewmycert.dto.CertificateField;
 import bozntouran.reviewmycert.entities.Certificate;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,4 +20,5 @@ public interface CertificateService {
     boolean deleteCertificateById(Long id);
 
     void updateCertificate(Certificate updateCertificate);
+    Page<CertificateDto> findAll(Long id, String name, Double startingRangePrice, Double endRangePrice, CertificateField certificateField, Integer pageNumber, Long companyId);
 }
